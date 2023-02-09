@@ -45,4 +45,5 @@ gradle 配置
 
 ![5a2a13be00f34f27873d485fc0115747](https://user-images.githubusercontent.com/16223789/217728699-78710eec-ce52-4394-a88b-f59ec6126102.png)
 
-
+<access token> github令牌  <userName> github名字  <repository>项目名称
+https://<access token>@github.com/<userName>/<repository>.git
