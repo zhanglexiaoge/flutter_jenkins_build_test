@@ -13,7 +13,9 @@
 ![截屏2023-02-09 11 36 39](https://user-images.githubusercontent.com/16223789/217711701-0156a1b7-a86d-4895-883f-63b6975c828e.png)
 
 项目路径下 echo $path
+注意注意 PATH 要大写 并且更改后要清除 Workspace 运行
 ![截屏2023-02-09 11 51 45](https://user-images.githubusercontent.com/16223789/217713677-78677344-bc6d-4c7b-86c2-73d64fa3c874.png)
+
 
 ![截屏2023-02-09 11 54 43](https://user-images.githubusercontent.com/16223789/217713980-caf14fa8-25b5-4a99-a8dd-b79507330f13.png)
 
@@ -47,3 +49,8 @@ gradle 配置
 
 <access token> github令牌  <userName> github名字  <repository>项目名称
 https://<access token>@github.com/<userName>/<repository>.git
+
+注意 /Users/xxxx/.jenkins 是本mac 安装 .jenkins目录  Androidflutter 是你的job  
+使用fvm 管理flutter 命令必须带上 fvm 
+![截屏2023-02-09 16 41 46](https://user-images.githubusercontent.com/16223789/217760740-882e392e-3f69-4c6a-b030-d0b1fdf430d1.png)
+
