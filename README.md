@@ -23,5 +23,26 @@ JDK 查看jdk路径命令:  /usr/libexec/java_home -V
 
 ![截屏2023-02-09 11 58 11](https://user-images.githubusercontent.com/16223789/217714392-d4bd8c12-efa9-476c-a75c-9742e388381a.png)
 
+gradle 配置
+查看项目的gradle版本：打开gradle-wrapper文件可以看到这一行，其实就是所需gradle的下载网址，如果本地没有找到Android会自动到这个网址进行下载。
+查看gradle的路径：File——>Settings——>Build——>Gradle，然后可以看到gradle所在路径
+
+![截屏2023-02-09 13 36 08](https://user-images.githubusercontent.com/16223789/217727162-62317ae6-1657-4711-8038-b82825a2dd06.png)
+
+
+![截屏2023-02-09 13 31 56](https://user-images.githubusercontent.com/16223789/217726646-54ca5ef6-cd05-4535-a5ad-5b196dba5001.png)
+
+添加凭据
+![907ce3e87f204ad7bc10673d0350ac44](https://user-images.githubusercontent.com/16223789/217728036-32af8d3c-db05-4f4a-a7ac-652ffe37fb55.png)
+
+![a125e680fe2e4f89aa9c77046e813779](https://user-images.githubusercontent.com/16223789/217728059-61ad4a39-b403-44f5-9848-c726be2dcd16.png)
+添加git 账户信息
+1. 点击全局
+2. 点击右上角 add Credentials
+![8b11a6bbb78d4f2398263f4198e22876](https://user-images.githubusercontent.com/16223789/217728159-8ac79a9a-1174-4897-ba17-895a3687709a.png)
+
+![17f9480982fb4f22b974578273a6cca5](https://user-images.githubusercontent.com/16223789/217728671-36eaafaa-78d8-4902-b182-5df1e107854c.png)
+
+![5a2a13be00f34f27873d485fc0115747](https://user-images.githubusercontent.com/16223789/217728699-78710eec-ce52-4394-a88b-f59ec6126102.png)
 
 
