@@ -1,0 +1,11 @@
+# app_identifier("[[APP_IDENTIFIER]]") # The bundle identifier of your app
+# apple_id("[[APPLE_ID]]") # Your Apple Developer Portal username
+
+# bundle Id
+app_identifier("com.example.flutterJenkinsBuildTest") # The bundle identifier of your app
+apple_id("195120202@qq.com") # Your Apple email address
+team_id("N222L6VCRL")
+
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile

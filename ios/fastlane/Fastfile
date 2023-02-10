@@ -1,0 +1,69 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+#获取版本号 并且build +1
+def updateProjectBuildNumber
+
+  build = get_build_number()
+  toBuildNum = build.to_i
+  toBuildNum = toBuildNum + 1
+  increment_build_number(
+    build_number: "#{toBuildNum}"
+  )
+end
+
+#指定项目的scheme名称
+scheme="Runner"
+#蒲公英api_key和user_key
+api_key="64e9a41dd64db29a3d0676871a310776"
+user_key="d2933e46452889288bef5c47217b4fdb"
+
+platform :ios do
+
+  #desc "ios_build on Apple Developer or App Store Connect sites"
+  #fastlane ios_build
+
+   lane :ios_build do|options|
+   branch = options[:branch]
+
+   puts "开始打development ipa"
+
+   updateProjectBuildNumber #更改项目build号
+   
+    get_build_number() 
+    
+# 开始打包
+  gym(
+    #输出的ipa名称
+    output_name:"#{scheme}",
+    silent: true,
+    # 是否清空以前的编译信息 true：是
+    clean:true,
+    # 指定打包方式，Release 或者 Debug
+    configuration:"Release",
+    # 指定打包所使用的输出方式，目前支持app-store, package, ad-hoc, enterprise, development
+    export_method:"development",
+    # 指定输出文件夹
+    output_directory:"./fastlane/build",
+  )
+
+  # puts "开始上传蒲公英"
+  # 开始上传蒲公英
+  #pgyer(api_key: "#{api_key}")
+  
+  end
+end
