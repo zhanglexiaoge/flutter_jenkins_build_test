@@ -54,3 +54,8 @@ https://<access token>@github.com/<userName>/<repository>.git
 使用fvm 管理flutter 命令必须带上 fvm 
 ![截屏2023-02-09 16 41 46](https://user-images.githubusercontent.com/16223789/217760740-882e392e-3f69-4c6a-b030-d0b1fdf430d1.png)
 
+ios fastlane 
+可参考简书 https://www.jianshu.com/p/f6962ab9e491
+![截屏2023-02-09 16 41 46](https://user-images.githubusercontent.com/16223789/217760740-882e392e-3f69-4c6a-b030-d0b1fdf430d1.png)简书
+![截屏2023-02-09 16 41 46](https://user-images.githubusercontent.com/16223789/217760740-882e392e-3f69-4c6a-b030-d0b1fdf430d1.png)
+
