@@ -54,8 +54,32 @@ https://<access token>@github.com/<userName>/<repository>.git
 使用fvm 管理flutter 命令必须带上 fvm 
 ![截屏2023-02-09 16 41 46](https://user-images.githubusercontent.com/16223789/217760740-882e392e-3f69-4c6a-b030-d0b1fdf430d1.png)
 
-ios fastlane 
-可参考简书 https://www.jianshu.com/p/f6962ab9e491
+
 ![截屏2023-02-09 16 41 46](https://user-images.githubusercontent.com/16223789/217760740-882e392e-3f69-4c6a-b030-d0b1fdf430d1.png)简书
 ![截屏2023-02-09 16 41 46](https://user-images.githubusercontent.com/16223789/217760740-882e392e-3f69-4c6a-b030-d0b1fdf430d1.png)
+ 
+ios fastlane 
+可参考简书 https://www.jianshu.com/p/f6962ab9e491
+https://www.jianshu.com/p/bc973ed0a8d9
+https://www.jianshu.com/p/407b91d702b2
+
+ jenkins Execute shell 安卓命令
+/Users/zhangle/.jenkins 本机jenkins 安装位置
+jenkins AndroidiOSflutterbuild 任务名
+      
+cd /Users/zhangle/.jenkins/workspace/AndroidiOSflutterbuild
+source /etc/profile
+fvm flutter clean 
+fvm flutter build apk --release
+
+jenkins Execute shell iOS命令
+ios_build fastlane 任务
+      
+      
+cd /Users/zhangle/.jenkins/workspace/AndroidiOSflutterbuild
+source /etc/profi
+cd /ios
+pod install
+fastlane ios_build 
+
 
