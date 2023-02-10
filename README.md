@@ -86,6 +86,10 @@ source /etc/profi
       
 cd /ios
       
+#!/bin/sh
+           
+export LANG=en_US.UTF-8 
+      
 pod install
       
 fastlane ios_build 
