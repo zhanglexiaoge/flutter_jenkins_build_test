@@ -67,19 +67,28 @@ https://www.jianshu.com/p/407b91d702b2
 /Users/zhangle/.jenkins 本机jenkins 安装位置
 jenkins AndroidiOSflutterbuild 任务名
       
-cd /Users/zhangle/.jenkins/workspace/AndroidiOSflutterbuild
+cd /Users/zhangle/.jenkins/workspace/AndroidiOSflutterbuild 
+      
 source /etc/profile
+      
 fvm flutter clean 
+      
 fvm flutter build apk --release
+      
 
 jenkins Execute shell iOS命令
 ios_build fastlane 任务
       
       
 cd /Users/zhangle/.jenkins/workspace/AndroidiOSflutterbuild
+      
 source /etc/profi
+      
 cd /ios
+      
 pod install
+      
 fastlane ios_build 
+      
 
 
