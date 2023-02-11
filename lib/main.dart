@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -103,15 +105,27 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
-            Container(
-              height: 50,
-              child: AndroidView(
-                //和你注册的名字一致
-                viewType: "App_Native_View",
-                creationParams: <String, dynamic>{"text": "Android Text View"},
-                creationParamsCodec: StandardMessageCodec(),
-              ),
-            ),
+            Platform.isIOS
+                ? Container(
+                    height: 50,
+                    child: const UiKitView(
+                      viewType: 'App_Native_View',
+                      creationParams: <String, dynamic>{
+                        "text": "iOS Text View"
+                      },
+                      creationParamsCodec: StandardMessageCodec(),
+                    ))
+                : Container(
+                    height: 50,
+                    child: const AndroidView(
+                      //和你注册的名字一致
+                      viewType: "App_Native_View",
+                      creationParams: <String, dynamic>{
+                        "text": "Android Text View"
+                      },
+                      creationParamsCodec: StandardMessageCodec(),
+                    ),
+                  ),
           ],
         ),
       ),

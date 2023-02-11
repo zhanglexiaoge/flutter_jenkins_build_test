@@ -19,6 +19,12 @@ import Flutter
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
     GeneratedPluginRegistrant.register(with: self)
+    
+      let registrar:FlutterPluginRegistrar = self.registrar(forPlugin:flutterMethodChannel)!
+          let factory = iOSNativeViewFactory.init()
+          factory.setBinaryMessage(messemger: registrar.messenger())
+      ///注册 FlutterViewFactory
+          registrar.register(factory, withId: appNativeView)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 }
