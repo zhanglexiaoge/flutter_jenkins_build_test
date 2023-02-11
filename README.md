@@ -80,11 +80,7 @@ jenkins Execute shell iOS命令
 ios_build fastlane 任务
       
       
-cd /Users/zhangle/.jenkins/workspace/AndroidiOSflutterbuild
-      
-source /etc/profi
-      
-cd /ios
+cd /Users/zhangle/.jenkins/workspace/AndroidiOSflutterbuild/ios
       
 #!/bin/sh
            
