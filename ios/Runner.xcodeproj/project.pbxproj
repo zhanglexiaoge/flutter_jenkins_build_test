@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08A2C894299789EC00BC4368 /* iOSNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A2C893299789EC00BC4368 /* iOSNativeView.swift */; };
+		08A2C896299790AF00BC4368 /* iOSNativeViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A2C895299790AF00BC4368 /* iOSNativeViewFactory.swift */; };
+		08A2C8982997944E00BC4368 /* FlutterChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A2C8972997944D00BC4368 /* FlutterChannel.swift */; };
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
@@ -30,6 +33,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		08A2C893299789EC00BC4368 /* iOSNativeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSNativeView.swift; sourceTree = "<group>"; };
+		08A2C895299790AF00BC4368 /* iOSNativeViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSNativeViewFactory.swift; sourceTree = "<group>"; };
+		08A2C8972997944D00BC4368 /* FlutterChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlutterChannel.swift; sourceTree = "<group>"; };
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
@@ -61,6 +67,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08A2C8902997899100BC4368 /* iOSNativeViews */ = {
+			isa = PBXGroup;
+			children = (
+				08A2C893299789EC00BC4368 /* iOSNativeView.swift */,
+				08A2C895299790AF00BC4368 /* iOSNativeViewFactory.swift */,
+			);
+			path = iOSNativeViews;
+			sourceTree = "<group>";
+		};
 		1487BBDC96378D9013EC35D4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -68,7 +83,6 @@
 				51CCC8919D9245F55BEAD729 /* Pods-Runner.release.xcconfig */,
 				3E72D39744476A84FE05FC8A /* Pods-Runner.profile.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -105,6 +119,7 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				08A2C8902997899100BC4368 /* iOSNativeViews */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
 				97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */,
@@ -113,6 +128,7 @@
 				1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */,
 				74858FAE1ED2DC5600515810 /* AppDelegate.swift */,
 				74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */,
+				08A2C8972997944D00BC4368 /* FlutterChannel.swift */,
 			);
 			path = Runner;
 			sourceTree = "<group>";
@@ -274,6 +290,9 @@
 			files = (
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
+				08A2C896299790AF00BC4368 /* iOSNativeViewFactory.swift in Sources */,
+				08A2C8982997944E00BC4368 /* FlutterChannel.swift in Sources */,
+				08A2C894299789EC00BC4368 /* iOSNativeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,8 +384,12 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.flutterJenkinsBuildTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Profile;
@@ -494,9 +517,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.flutterJenkinsBuildTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -517,8 +544,12 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.flutterJenkinsBuildTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
