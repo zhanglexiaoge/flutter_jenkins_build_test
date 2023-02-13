@@ -8,6 +8,9 @@ class ChannelName {
 
   /// toNaiveParam  flutter 像原生传值交互方法
   static String toNaiveParam = "to_naive_param";
+
+  // ///插件名 iOS_Native_TextField_Plugin
+  // static String iOSNativeTextFieldPluginChannel = "iOS_Native_TextField_Plugin";
 }
 
 ///可以注册多个
@@ -16,12 +19,18 @@ const _flutterNativeMethodChannel = MethodChannel("flutter_native_ios");
 
 const _flutterTestNativeMethodChannel = MethodChannel("flutter_test_native");
 
+// ///插件名 iOS_Native_TextField_Plugin
+// const _iOSNativeTextFieldPluginMethodChannel =
+//     MethodChannel("iOS_Native_TextField_Plugin");
+
 class ChannelManager {
   ///设置channel·
   static ChannelManager setUp() {
     var i = ChannelManager();
     _flutterNativeMethodChannel.setMethodCallHandler(i._nativeHandler);
     _flutterTestNativeMethodChannel.setMethodCallHandler(i._nativeHandler);
+    // _iOSNativeTextFieldPluginMethodChannel
+    //     .setMethodCallHandler(i._nativeHandler);
 
     return i;
   }
@@ -44,6 +53,11 @@ class ChannelManager {
     } else if (methodChannelStr == ChannelName.flutterTestChannelName) {
       methodChannel = _flutterTestNativeMethodChannel;
     }
+
+    // else if (methodChannelStr ==
+    //     ChannelName.iOSNativeTextFieldPluginChannel) {
+    //   methodChannel = _iOSNativeTextFieldPluginMethodChannel;
+    // }
     var result =
         await methodChannel.invokeMethod(method, arguments).catchError((error) {
       print(error.toString());

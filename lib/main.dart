@@ -97,14 +97,22 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            Expanded(
+              child: Platform.isIOS
+                  ? Container(
+                      child: const UiKitView(
+                      viewType: 'iOS_Native_TextField_ViewId',
+                      creationParams: <String, dynamic>{
+                        "text": "iOS_Native_TextFieldview"
+                      },
+                      creationParamsCodec: StandardMessageCodec(),
+                      //onPlatformViewCreated: _onPlatformViewCreated, //原生视图创建成功的回调
+                    ))
+                  : SizedBox(
+                      height: 20,
+                    ),
             ),
             Platform.isIOS
                 ? Container(
@@ -112,7 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: const UiKitView(
                       viewType: 'App_Native_View',
                       creationParams: <String, dynamic>{
-                        "text": "iOS Text View"
+                        "text": "iOS Native View"
                       },
                       creationParamsCodec: StandardMessageCodec(),
                       //onPlatformViewCreated: _onPlatformViewCreated, //原生视图创建成功的回调
@@ -123,7 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       //和你注册的名字一致
                       viewType: "App_Native_View",
                       creationParams: <String, dynamic>{
-                        "text": "Android Text View"
+                        "text": "Android Native View"
                       },
                       creationParamsCodec: StandardMessageCodec(),
                     ),
@@ -139,7 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     methodChannelStr: ChannelName.flutterChannelName,
                     arguments: {'key': 'Flutter To Native Value'});
 
-                print('Flutter To Native Callback:' + result.toString());
+                print('Flutter To Native Callback === ' + result.toString());
               },
             ),
           ],
