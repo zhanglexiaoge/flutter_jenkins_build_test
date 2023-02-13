@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_jenkins_build_test/flutterNativeChannel/flutter_native_channel_manager.dart';
 
 void main() {
   runApp(const MyApp());
@@ -114,6 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         "text": "iOS Text View"
                       },
                       creationParamsCodec: StandardMessageCodec(),
+                      //onPlatformViewCreated: _onPlatformViewCreated, //原生视图创建成功的回调
                     ))
                 : Container(
                     height: 50,
@@ -126,6 +128,20 @@ class _MyHomePageState extends State<MyHomePage> {
                       creationParamsCodec: StandardMessageCodec(),
                     ),
                   ),
+            TextButton(
+              child: Text('Flutter传递参数给原生View'),
+              onPressed: () async {
+                print('111111111');
+
+                ///并接收回调结果
+                var result = await ChannelManager.instance.toNative(
+                    ChannelName.toNaiveParam,
+                    methodChannelStr: ChannelName.flutterChannelName,
+                    arguments: {'key': 'Flutter To Native Value'});
+
+                print('Flutter To Native Callback:' + result.toString());
+              },
+            ),
           ],
         ),
       ),

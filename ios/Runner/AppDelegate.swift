@@ -25,6 +25,9 @@ import Flutter
           factory.setBinaryMessage(messemger: registrar.messenger())
       ///注册 FlutterViewFactory
           registrar.register(factory, withId: appNativeView)
+     
+      
+      
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 }
