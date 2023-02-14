@@ -19,12 +19,31 @@ import Flutter
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
     GeneratedPluginRegistrant.register(with: self)
+      
     
       let registrar:FlutterPluginRegistrar = self.registrar(forPlugin:flutterMethodChannel)!
           let factory = iOSNativeViewFactory.init()
           factory.setBinaryMessage(messemger: registrar.messenger())
       ///注册 FlutterViewFactory
           registrar.register(factory, withId: appNativeView)
+      
+      
+      registrariOSNativeTextFieldPlugin()
+      
+      
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
+    
+    @objc private func registrariOSNativeTextFieldPlugin() {
+        ///注册插件iOSNativeTextFieldPlugin
+        let kiOSNativeTextFieldPluginRegistrar:FlutterPluginRegistrar = self.registrar(forPlugin: iOSNativeTextFieldPluginChannel)!
+        let factory = iOSNativeTextFieldViewFactory.init()
+        factory.setBinaryMessage(messemger: kiOSNativeTextFieldPluginRegistrar.messenger())
+        
+        //////iOSNativeTextFieldView 的标识
+        kiOSNativeTextFieldPluginRegistrar.register(factory, withId: iOSNativeTextFieldViewId)
+        iOSNativeTextFieldPlugin.register(with:kiOSNativeTextFieldPluginRegistrar)
+        
+    }
+    
 }

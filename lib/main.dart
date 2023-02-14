@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_jenkins_build_test/flutterNativeChannel/flutter_native_channel_manager.dart';
 
 void main() {
   runApp(const MyApp());
@@ -53,6 +54,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
+  String? nativeToFlutter;
+
+  String buttonName = "Flutter To 原生View iOS_Native_TextField_ViewId";
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -63,6 +67,27 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
+
+//开始监听
+  @override
+  void initState() {
+    super.initState();
+    EventChannel _eventChannel = EventChannel(
+        ChannelName.NativeToFlutterValue, const StandardMethodCodec());
+    _eventChannel
+        .receiveBroadcastStream("init")
+        .listen(_onEvent, onError: _onError);
+  }
+
+  // 数据接收
+  void _onEvent(var value) {
+    print(value);
+    nativeToFlutter = (value ?? '').toString();
+    setState(() {});
+  }
+
+// 错误处理
+  void _onError(dynamic) {}
 
   @override
   Widget build(BuildContext context) {
@@ -96,14 +121,41 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            Expanded(
+              child: Platform.isIOS
+                  ? Container(
+                      child: const UiKitView(
+                      viewType: 'iOS_Native_TextField_ViewId',
+                      creationParams: <String, dynamic>{
+                        "text": "iOS_Native_TextFieldview"
+                      },
+                      creationParamsCodec: StandardMessageCodec(),
+                      //onPlatformViewCreated: _onPlatformViewCreated, //原生视图创建成功的回调
+                    ))
+                  : SizedBox(
+                      height: 20,
+                    ),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            (nativeToFlutter ?? '').isNotEmpty
+                ? Text(nativeToFlutter!)
+                : SizedBox(),
+            TextButton(
+              child: Text(buttonName),
+              onPressed: () async {
+                ///并接收回调结果
+                var result = await ChannelManager.instance.toNative(
+                    ChannelName.toiOSNativeTextFieldPluginParam,
+                    methodChannelStr:
+                        ChannelName.iOSNativeTextFieldPluginChannel,
+                    arguments: {
+                      'key': 'Flutter To toiOSNativeTextFieldPluginParam Value',
+                      "button": "button Name"
+                    });
+                buttonName = result.toString();
+                setState(() {});
+              },
             ),
             Platform.isIOS
                 ? Container(
@@ -111,9 +163,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: const UiKitView(
                       viewType: 'App_Native_View',
                       creationParams: <String, dynamic>{
-                        "text": "iOS Text View"
+                        "text": "iOS Native View"
                       },
                       creationParamsCodec: StandardMessageCodec(),
+                      //onPlatformViewCreated: _onPlatformViewCreated, //原生视图创建成功的回调
                     ))
                 : Container(
                     height: 50,
@@ -121,11 +174,25 @@ class _MyHomePageState extends State<MyHomePage> {
                       //和你注册的名字一致
                       viewType: "App_Native_View",
                       creationParams: <String, dynamic>{
-                        "text": "Android Text View"
+                        "text": "Android Native View"
                       },
                       creationParamsCodec: StandardMessageCodec(),
                     ),
                   ),
+            TextButton(
+              child: Text('Flutter传递参数给原生View'),
+              onPressed: () async {
+                print('111111111');
+
+                ///并接收回调结果
+                var result = await ChannelManager.instance.toNative(
+                    ChannelName.toNaiveParam,
+                    methodChannelStr: ChannelName.flutterChannelName,
+                    arguments: {'key': 'Flutter To Native Value'});
+
+                print('Flutter To Native Callback === ' + result.toString());
+              },
+            ),
           ],
         ),
       ),
