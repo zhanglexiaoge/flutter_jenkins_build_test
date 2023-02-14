@@ -9,9 +9,13 @@ import UIKit
 import SnapKit
 
 class iOSNativeTextFieldView: NSObject,FlutterPlatformView  {
+   
+    
     let viewT = UIView()
     let textField = UITextField()
     let button = UIButton()
+   
+    
     
 
     var methodChannel: FlutterMethodChannel!
@@ -20,7 +24,8 @@ class iOSNativeTextFieldView: NSObject,FlutterPlatformView  {
      init(_frame:CGRect,viewId:Int64 ,args :Any?,messenger :FlutterBinaryMessenger) {
         
         super.init()
-         
+        
+         NotificationCenter.default.addObserver(self, selector: #selector(handleiOSNativeTextFieldChange(sender:)), name: NSNotification.Name.init(notificationName_iOSNativeTextFieldChange), object: nil)
          
          //设置边框样式为圆角矩形
          textField.borderStyle = UITextField.BorderStyle.roundedRect
@@ -51,6 +56,8 @@ class iOSNativeTextFieldView: NSObject,FlutterPlatformView  {
              make.top.equalTo(44)
          }
          
+         button.addTarget(self, action: #selector(buttonAction), for: UIControl.Event.touchUpInside)
+         
          
         
         ///flutter 传过来的值  {"text": "Android Text View"},
@@ -66,8 +73,29 @@ class iOSNativeTextFieldView: NSObject,FlutterPlatformView  {
     }
     
     
+   
+    ///原生向flutter 发送数据
+    @objc private func buttonAction(){
+        
+        iOSNativeTextFieldPlugin.shared.nativeToFlutter(arguments: self.textField.text)
+        
+    }
+    
+    @objc private func handleiOSNativeTextFieldChange(sender:Notification){
+       
+       let dict = sender.userInfo
+       let key1 = dict!["key"] as! String
+       let buttonName = dict!["button"] as! String
+     
+       self.textField.text = key1
+       self.button .setTitle(buttonName, for: .normal)
+        
+    }
     
     func view() -> UIView {
                return viewT
            }
+    
+    
+    
 }

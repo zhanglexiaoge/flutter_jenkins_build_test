@@ -54,6 +54,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
+  String? nativeToFlutter;
+
+  String buttonName = "Flutter To 原生View iOS_Native_TextField_ViewId";
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -64,6 +67,27 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
+
+//开始监听
+  @override
+  void initState() {
+    super.initState();
+    EventChannel _eventChannel = EventChannel(
+        ChannelName.NativeToFlutterValue, const StandardMethodCodec());
+    _eventChannel
+        .receiveBroadcastStream("init")
+        .listen(_onEvent, onError: _onError);
+  }
+
+  // 数据接收
+  void _onEvent(var value) {
+    print(value);
+    nativeToFlutter = (value ?? '').toString();
+    setState(() {});
+  }
+
+// 错误处理
+  void _onError(dynamic) {}
 
   @override
   Widget build(BuildContext context) {
@@ -113,6 +137,25 @@ class _MyHomePageState extends State<MyHomePage> {
                   : SizedBox(
                       height: 20,
                     ),
+            ),
+            (nativeToFlutter ?? '').isNotEmpty
+                ? Text(nativeToFlutter!)
+                : SizedBox(),
+            TextButton(
+              child: Text(buttonName),
+              onPressed: () async {
+                ///并接收回调结果
+                var result = await ChannelManager.instance.toNative(
+                    ChannelName.toiOSNativeTextFieldPluginParam,
+                    methodChannelStr:
+                        ChannelName.iOSNativeTextFieldPluginChannel,
+                    arguments: {
+                      'key': 'Flutter To toiOSNativeTextFieldPluginParam Value',
+                      "button": "button Name"
+                    });
+                buttonName = result.toString();
+                setState(() {});
+              },
             ),
             Platform.isIOS
                 ? Container(
