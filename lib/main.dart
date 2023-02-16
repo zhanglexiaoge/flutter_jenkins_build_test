@@ -106,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Column(
+        child: ListView(
           // Column is also a layout widget. It takes a list of children and
           // arranges them vertically. By default, it sizes itself to fit its
           // children horizontally, and tries to be as tall as its parent.
@@ -121,9 +121,11 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
-          mainAxisAlignment: MainAxisAlignment.start,
+          //mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Expanded(
+            Expanded(child: SizedBox()),
+            Container(
+              height: 150,
               child: Platform.isIOS
                   ? Container(
                       child: const UiKitView(
@@ -134,8 +136,15 @@ class _MyHomePageState extends State<MyHomePage> {
                       creationParamsCodec: StandardMessageCodec(),
                       //onPlatformViewCreated: _onPlatformViewCreated, //原生视图创建成功的回调
                     ))
-                  : SizedBox(
-                      height: 20,
+                  : Container(
+                      child: const AndroidView(
+                        //和你注册的名字一致
+                        viewType: 'iOS_Native_TextField_ViewId',
+                        creationParams: <String, dynamic>{
+                          "text": "Android Native_TextFieldView"
+                        },
+                        creationParamsCodec: StandardMessageCodec(),
+                      ),
                     ),
             ),
             (nativeToFlutter ?? '').isNotEmpty
