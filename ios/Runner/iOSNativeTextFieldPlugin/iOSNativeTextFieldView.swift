@@ -60,7 +60,7 @@ class iOSNativeTextFieldView: NSObject,FlutterPlatformView  {
          
          
         
-        ///flutter 传过来的值  {"text": "Android Text View"},
+        ///flutter 初始化原生传过来的值  {"text": "Android Text View"},
         if(args is NSDictionary){
             let dict = args as! NSDictionary
             self.textField.text = dict.value(forKey: "text") as? String
